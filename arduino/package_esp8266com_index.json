@@ -372,6 +372,128 @@
         {
           "category": "ESP8266", 
           "help": {
+            "online": "https://arduino-esp8266.readthedocs.io/en/2.5.0-beta3/"
+          }, 
+          "url": "https://github.com/esp8266/Arduino/releases/download/2.5.0-beta3/esp8266-2.5.0-beta3.zip", 
+          "checksum": "SHA-256:36905e91fe162f1b9056dcee7717e91cc46a27425b186f8a14a56b62f691dcf3", 
+          "version": "2.5.0-beta3", 
+          "architecture": "esp8266", 
+          "archiveFileName": "esp8266-2.5.0-beta3.zip", 
+          "boards": [
+            {
+              "name": "Generic ESP8266 Module"
+            }, 
+            {
+              "name": "Generic ESP8285 Module"
+            }, 
+            {
+              "name": "ESPDuino (ESP-13 Module)"
+            }, 
+            {
+              "name": "Adafruit Feather HUZZAH ESP8266"
+            }, 
+            {
+              "name": "Invent One"
+            }, 
+            {
+              "name": "XinaBox CW01"
+            }, 
+            {
+              "name": "ESPresso Lite 1.0"
+            }, 
+            {
+              "name": "ESPresso Lite 2.0"
+            }, 
+            {
+              "name": "Phoenix 1.0"
+            }, 
+            {
+              "name": "Phoenix 2.0"
+            }, 
+            {
+              "name": "NodeMCU 0.9 (ESP-12 Module)"
+            }, 
+            {
+              "name": "NodeMCU 1.0 (ESP-12E Module)"
+            }, 
+            {
+              "name": "Olimex MOD-WIFI-ESP8266(-DEV)"
+            }, 
+            {
+              "name": "SparkFun ESP8266 Thing"
+            }, 
+            {
+              "name": "SparkFun ESP8266 Thing Dev"
+            }, 
+            {
+              "name": "SweetPea ESP-210"
+            }, 
+            {
+              "name": "LOLIN(WEMOS) D1 R2 & mini"
+            }, 
+            {
+              "name": "LOLIN(WEMOS) D1 mini Pro"
+            }, 
+            {
+              "name": "LOLIN(WEMOS) D1 mini Lite"
+            }, 
+            {
+              "name": "WeMos D1 R1"
+            }, 
+            {
+              "name": "ESPino (ESP-12 Module)"
+            }, 
+            {
+              "name": "ThaiEasyElec's ESPino"
+            }, 
+            {
+              "name": "WifInfo"
+            }, 
+            {
+              "name": "Arduino"
+            }, 
+            {
+              "name": "4D Systems gen4 IoD Range"
+            }, 
+            {
+              "name": "Digistump Oak"
+            }, 
+            {
+              "name": "WiFiduino"
+            }, 
+            {
+              "name": "Amperka WiFi Slot"
+            }, 
+            {
+              "name": "Seeed Wio Link"
+            }, 
+            {
+              "name": "ESPectro Core"
+            }
+          ], 
+          "size": "20299608", 
+          "toolsDependencies": [
+            {
+              "packager": "esp8266", 
+              "version": "2.5.0-3-20ed2b9", 
+              "name": "esptool"
+            }, 
+            {
+              "packager": "esp8266", 
+              "version": "2.5.0-3-20ed2b9", 
+              "name": "xtensa-lx106-elf-gcc"
+            }, 
+            {
+              "packager": "esp8266", 
+              "version": "2.5.0-3-20ed2b9", 
+              "name": "mkspiffs"
+            }
+          ], 
+          "name": "esp8266"
+        }, 
+        {
+          "category": "ESP8266", 
+          "help": {
             "online": "http://esp8266.github.com/Arduino/versions/2.2.0/"
           }, 
           "url": "https://github.com/esp8266/Arduino/releases/download/2.2.0/esp8266-2.2.0.zip", 
@@ -957,11 +1079,133 @@
         {
           "category": "ESP8266", 
           "name": "esp8266", 
-          "url": "https://github.com/esp8266/Arduino/releases/download/2.5.0-beta2/esp8266-2.5.0-beta2.zip", 
-          "checksum": "SHA-256:0c353a9ed03ae1f6ca760b6ad0668d5f8cae47d2904baf6134e787e52f34c5b8", 
+          "url": "https://github.com/esp8266/Arduino/releases/download/2.5.0/esp8266-2.5.0.zip", 
+          "checksum": "SHA-256:efb214ae76cf6a4d87e59093abeb13bdab430f92e1a0b3371ad364ffcb537958", 
+          "help": {
+            "online": "https://arduino-esp8266.readthedocs.io/en/2.5.0/"
+          }, 
+          "version": "2.5.0", 
+          "architecture": "esp8266", 
+          "archiveFileName": "esp8266-2.5.0.zip", 
+          "size": "20291656", 
+          "toolsDependencies": [
+            {
+              "packager": "esp8266", 
+              "version": "2.5.0-3-20ed2b9", 
+              "name": "esptool"
+            }, 
+            {
+              "packager": "esp8266", 
+              "version": "2.5.0-3-20ed2b9", 
+              "name": "xtensa-lx106-elf-gcc"
+            }, 
+            {
+              "packager": "esp8266", 
+              "version": "2.5.0-3-20ed2b9", 
+              "name": "mkspiffs"
+            }
+          ], 
+          "boards": [
+            {
+              "name": "Generic ESP8266 Module"
+            }, 
+            {
+              "name": "Generic ESP8285 Module"
+            }, 
+            {
+              "name": "ESPDuino (ESP-13 Module)"
+            }, 
+            {
+              "name": "Adafruit Feather HUZZAH ESP8266"
+            }, 
+            {
+              "name": "Invent One"
+            }, 
+            {
+              "name": "XinaBox CW01"
+            }, 
+            {
+              "name": "ESPresso Lite 1.0"
+            }, 
+            {
+              "name": "ESPresso Lite 2.0"
+            }, 
+            {
+              "name": "Phoenix 1.0"
+            }, 
+            {
+              "name": "Phoenix 2.0"
+            }, 
+            {
+              "name": "NodeMCU 0.9 (ESP-12 Module)"
+            }, 
+            {
+              "name": "NodeMCU 1.0 (ESP-12E Module)"
+            }, 
+            {
+              "name": "Olimex MOD-WIFI-ESP8266(-DEV)"
+            }, 
+            {
+              "name": "SparkFun ESP8266 Thing"
+            }, 
+            {
+              "name": "SparkFun ESP8266 Thing Dev"
+            }, 
+            {
+              "name": "SweetPea ESP-210"
+            }, 
+            {
+              "name": "LOLIN(WEMOS) D1 R2 & mini"
+            }, 
+            {
+              "name": "LOLIN(WEMOS) D1 mini Pro"
+            }, 
+            {
+              "name": "LOLIN(WEMOS) D1 mini Lite"
+            }, 
+            {
+              "name": "WeMos D1 R1"
+            }, 
+            {
+              "name": "ESPino (ESP-12 Module)"
+            }, 
+            {
+              "name": "ThaiEasyElec's ESPino"
+            }, 
+            {
+              "name": "WifInfo"
+            }, 
+            {
+              "name": "Arduino"
+            }, 
+            {
+              "name": "4D Systems gen4 IoD Range"
+            }, 
+            {
+              "name": "Digistump Oak"
+            }, 
+            {
+              "name": "WiFiduino"
+            }, 
+            {
+              "name": "Amperka WiFi Slot"
+            }, 
+            {
+              "name": "Seeed Wio Link"
+            }, 
+            {
+              "name": "ESPectro Core"
+            }
+          ]
+        }, 
+        {
+          "category": "ESP8266", 
           "help": {
             "online": "https://arduino-esp8266.readthedocs.io/en/2.5.0-beta2/"
           }, 
+          "url": "https://github.com/esp8266/Arduino/releases/download/2.5.0-beta2/esp8266-2.5.0-beta2.zip", 
+          "checksum": "SHA-256:0c353a9ed03ae1f6ca760b6ad0668d5f8cae47d2904baf6134e787e52f34c5b8", 
+          "name": "esp8266", 
           "version": "2.5.0-beta2", 
           "architecture": "esp8266", 
           "archiveFileName": "esp8266-2.5.0-beta2.zip", 
@@ -1200,6 +1444,13 @@
               "size": "44935132"
             }, 
             {
+              "url": "https://github.com/earlephilhower/esp-quick-toolchain/releases/download/2.5.0-3/i686-linux-gnu.xtensa-lx106-elf-1f24aeae.tar.gz", 
+              "checksum": "SHA-256:96b106fbc814155e92d1805d3227d36096b88d3d54cfcd885804a0e9cf5631d7", 
+              "host": "i686-pc-linux-gnu", 
+              "archiveFileName": "i686-linux-gnu.xtensa-lx106-elf-1f24aeae.tar.gz", 
+              "size": "42500158"
+            }, 
+            {
               "url": "https://github.com/earlephilhower/esp-quick-toolchain/releases/download/2.5.0-3/x86_64-apple-darwin14.xtensa-lx106-elf-20ed2b9c.tar.gz", 
               "checksum": "SHA-256:fd29ae844915fb2dd800d99ad7967be0e890601c18b80555efbc4eca2dd808c2", 
               "host": "x86_64-apple-darwin", 
@@ -1383,6 +1634,13 @@
               "host": "i686-mingw32", 
               "archiveFileName": "i686-w64-mingw32.esptool-f80ae31.zip", 
               "size": "16466"
+            }, 
+            {
+              "url": "https://github.com/earlephilhower/esp-quick-toolchain/releases/download/2.5.0-3/i686-linux-gnu.esptool-f80ae31.tar.gz", 
+              "checksum": "SHA-256:fe632f4602d02b6a9425c5bf95074095cb6d3c57912168a0f6b796fddd8ce991", 
+              "host": "i686-pc-linux-gnu", 
+              "archiveFileName": "i686-linux-gnu.esptool-f80ae31.tar.gz", 
+              "size": "16543"
             }, 
             {
               "url": "https://github.com/earlephilhower/esp-quick-toolchain/releases/download/2.5.0-3/x86_64-apple-darwin14.esptool-f80ae31.tar.gz", 
@@ -1753,6 +2011,13 @@
               "host": "i686-mingw32", 
               "archiveFileName": "i686-w64-mingw32.mkspiffs-7fefeac.zip", 
               "size": "337874"
+            }, 
+            {
+              "url": "https://github.com/earlephilhower/esp-quick-toolchain/releases/download/2.5.0-3/i686-linux-gnu.mkspiffs-7fefeac.tar.gz", 
+              "checksum": "SHA-256:d080b3b50ee00ac56b7204f8d08b95cd53872a2e09da590775ee631bcb279cad", 
+              "host": "i686-pc-linux-gnu", 
+              "archiveFileName": "i686-linux-gnu.mkspiffs-7fefeac.tar.gz", 
+              "size": "54276"
             }, 
             {
               "url": "https://github.com/earlephilhower/esp-quick-toolchain/releases/download/2.5.0-3/x86_64-apple-darwin14.mkspiffs-7fefeac.tar.gz", 

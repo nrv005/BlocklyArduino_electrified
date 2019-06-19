@@ -5,7 +5,7 @@
         <title>Blockly@rduino</title>
         <!--load first for menus-->
         <link rel="stylesheet" type="text/css" href="css/menu.css"/>
-        <script type="text/javascript" src="core/Blockly/blockly_compressed.js"></script>
+        <script type="text/javascript" src="core/blockly_compressed.js"></script>
         <!-- needed for type of variable -->
         <script type="text/javascript" src="core/Ardublockly/type.js"></script>
         <script type="text/javascript" src="core/Ardublockly/types.js"></script>
@@ -15,6 +15,7 @@
         <script type="text/javascript" src="core/Ardublockly/block_instance.js"></script>
         <!--Arduino generator, must be defined NOW-->
         <script type="text/javascript" src="generators/generator_arduino.js"></script>
+        <script type="text/javascript" src="generators/generator_python.js"></script>
 
         <script type="text/javascript" src="core/BlocklyArduino/blockly@rduino_core_AIO.js"></script>
         <script type="text/javascript" src="core/BlocklyArduino/blockly@rduino_boards.js"></script>
@@ -38,6 +39,11 @@
         <!-- define all additional blocks from one resumer-->
         <script type="text/javascript" src="blocks/arduino_resume.js"></script>
         <script type="text/javascript" src="generators/arduino_resume.js"></script>
+
+        <!-- define all python & micro:bit-->
+        <script type="text/javascript" src="blocks/microbit/microbit.js"></script>
+        <script type="text/javascript" src="generators/python_resume.js"></script>
+		
         <script type="text/javascript" src="lang/code.js"></script>
 
         <link rel="stylesheet" type="text/css" href="css/bootstrap.min.BlocklyArduino.css"/>
@@ -58,7 +64,7 @@
         <div class="loading"></div>
         <div id="header">
             <div id="logo_Titre">
-                <a href="./index_electron.html">
+                <a href="./index_AIO.html">
                     <img id="clearLink" src="media/logo-mini.png" border="0" height="36" onclick="" />
                 </a>
             </div>
@@ -165,39 +171,27 @@
 					<button id="btn_verify_local" class="btn btn-arduino">
 						<span class="fas fa-check fa-1_5x fa-fw"> </span>
 					</button>
-					<select id="serialport_ide" class="synchCOMport">
-						<option value="no_com" selected>Choisir le port</option>
-					</select>
 					<button id="btn_flash_local" class="btn btn-arduino">
 						<span class="fas fa-arrow-right fa-1_5x fa-fw"> </span>
 					</button>
 					<button id="btn_term" class="btn btn-arduinoRect">
 						<span class="fas fa-search fa-flip-horizontal fa-1_5x fa-fw"> </span>
 					</button>
-					<!-- <button id="btn_pasteIDEArduino" class="btn btn-arduino"> -->
-					<!-- <span class="fa fa-folder-open"> </span> -->
-					<!-- <span id="span_pasteIDEArduino"> </span> -->
-					<!-- </button> -->
 					<span id="survol" style="color:white"></span>
 				</div>
             </div>
             <div id="header_supervision">
 				<div id="barre_supervision">
-					<select id="serialport_sup" class="synchCOMport">
-						<option value="no_com" selected>Choisir le port</option>
-					</select>
-					<span id="span_pymata_upload_text" style="color:white"></span>
-					<button id="btn_flash_pymata" class="btn btn-arduino">
-						<span class="fas fa-arrow-right fa-1_5x fa-fw"> </span>
-                        <span id="span_flash_pymata"> </span>
-					</button>
-					<span id="span_pymata_toggle_text" style="color:white"></span>
-					<button id="toggle-pymata" class="btn btn-arduino">
-						<span class="fas fa-arrow-right fa-1_5x fa-fw"> </span>
-                        <span id="span_flash_pymata"> </span>
-					</button>
-					<!-- <input id="toggle-pymata" data-toggle="toggle" data-off="<span id='span_pymataOFF'> </span>" data-on="<span id='span_pymataON'> </span>" data-onstyle="primary" data-offstyle="default" data-width="120" type="checkbox"/> -->
-					<span id="sup_debug" style="color:white"></span>
+					<nav class="navbar" id="SupNav">
+						<ul class="navbar">
+							<span id="sup_debug" style="color:white"></span>
+							<li role="presentation" class="nav-item active"><a href="#tabs-1" aria-controls="tabs-1" role="tab" data-toggle="tab"><span id="span_supervision_tab1"> </span></a></li>
+							<li role="presentation" class="nav-item"><a href="#tabs-2" aria-controls="tabs-2" role="tab" data-toggle="tab"><span id="span_supervision_tab2"> </span></a></li>
+							<li role="presentation" class="nav-item"><a href="#tabs-3" aria-controls="tabs-3" role="tab" data-toggle="tab"><span id="span_supervision_tab3"> </span></a></li>
+							<li role="presentation" class="nav-item"><a href="#tabs-4" aria-controls="tabs-4" role="tab" data-toggle="tab"><span id="span_supervision_tab4"> </span></a></li>
+							<li role="presentation" class="nav-item"><a href="#tabs-5" aria-controls="tabs-5" role="tab" data-toggle="tab"><span id="span_supervision_tab5"> </span></a></li>
+						</ul>
+					</nav>
 				</div>
             </div>
             <div id="tools_blocks" class="tab-pane active">
@@ -300,9 +294,11 @@
                 </div>
                 <input type="file" id="load" accept=".B@, .xml" style="display: none;" />
                 <div id="div_tools_button">
-                    <!--button id="btn_wiring" class="btn btn-primary">
-                            <span class="glyphicon glyphicon-blackboard"></span>
-                    </button-->
+                    <button id="btn_wiring" class="btn btn-primary">
+                         <span class="fa fa-plug"></span>
+                    </button>
+                    <br />
+                    <br />
                     <button id="btn_factory" class="btn btn-primary" >
                         <span class="fa fa-industry"> </span>
                     </button>
@@ -374,6 +370,17 @@
                         <b> <span id="title"> </span> </b>
                         <br />
                         <br />
+                        <div align="center" id="paypal_about">
+                            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" >
+                                <input type="hidden" name="cmd" value="_s-xclick"/>
+                                <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----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-----END PKCS7-----
+                                       "/>
+                                <input type="image" src=".\media\btn_donateCC_LG.gif" name="submit" alt="PayPal, le réflexe sécurité pour payer en ligne"/>
+                                <img alt="" border="0" src=".\media\pixel.gif" width="1" height="1"/>
+                            </form>
+                        </div>
+                        <div align="center"><b><a href="http://framaforms.org/blocklyrduino-utilisateurs-1490560876" target='blank'><font size="6"><span id="span_forms_about" style="font-style: bold;"> </span></font></a></b></div>
+						<br />
                         <b>Forum</b> : <a href='http://blockly.technologiescollege.fr/forum' target='blank'><i class="fab fa-wpforms"></i> http://blockly.technologiescollege.fr/forum</a>
                         <br />
                         <br /><b>Documentation :</b> <a href="http://www.libreduc.cc/wiki/doku.php" target='blank'><i class="fab fa-wikipedia-w"></i> wiki</a>
@@ -395,20 +402,8 @@
                         <br /> - HeadJS (<a href='http://headjs.com/' target='blank'>http://headjs.com/)</a>
                         <br /> - SmoothieCharts (<a href='http://smoothiecharts.org/' target='blank'>http://smoothiecharts.org/)</a>
                         <br />
-                        <div align="center"><b><a href="http://framaforms.org/blocklyrduino-utilisateurs-1490560876" target='blank'><font size="12"><span id="span_forms_about" style="font-style: bold;"> </span></font></a></b></div>
                         <br />
-                        <br /><i>version 15-12-2018 - v3 "all compatible"</i>
-                        <br />
-                        <br />
-                        <div align="center" id="paypal_about">
-                            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" >
-                                <input type="hidden" name="cmd" value="_s-xclick"/>
-                                <input type="hidden" name="encrypted" value="-----BEGIN PKCS7-----MIIHRwYJKoZIhvcNAQcEoIIHODCCBzQCAQExggEwMIIBLAIBADCBlDCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb20CAQAwDQYJKoZIhvcNAQEBBQAEgYAJgrlyKFLvrPLE466I/C6ixXUGcjCFWFDL8g8X1fvVuJzH6Oas51725FWmM2lj/qnlMC1OXDsQ5t+gZdtOHT/aNGKMGVKAwunuzdXunh12K6B/IyviY/t92zr4MNAzKUPbFEedz+KhPof+qHLtbggsH838JNZkI/C/IT2ywYjaVTELMAkGBSsOAwIaBQAwgcQGCSqGSIb3DQEHATAUBggqhkiG9w0DBwQI1IdcWrDXciiAgaBz6D0isbpRuJMLj/+WkYtJeIqWf5gWhgO6ZQuqIty98fGcIo4o++FnUPhVP7zNzLRnvQDEPBh2kmYKSeZzKKjhrftr4JUaf/kQ7ZlKrvZSI/9m9tRRhSXrLyPCdhG7WQpypTC5Zt8PENDPx6pUfpYGhmAQ/jaS+OHb8+XQbddJJWcNhP5NDPuNSyI3aAGNonqFkw+QhWtsZNfOlZYfWfIMoIIDhzCCA4MwggLsoAMCAQICAQAwDQYJKoZIhvcNAQEFBQAwgY4xCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIGA1UEChMLUGF5UGFsIEluYy4xEzARBgNVBAsUCmxpdmVfY2VydHMxETAPBgNVBAMUCGxpdmVfYXBpMRwwGgYJKoZIhvcNAQkBFg1yZUBwYXlwYWwuY29tMB4XDTA0MDIxMzEwMTMxNVoXDTM1MDIxMzEwMTMxNVowgY4xCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIGA1UEChMLUGF5UGFsIEluYy4xEzARBgNVBAsUCmxpdmVfY2VydHMxETAPBgNVBAMUCGxpdmVfYXBpMRwwGgYJKoZIhvcNAQkBFg1yZUBwYXlwYWwuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDBR07d/ETMS1ycjtkpkvjXZe9k+6CieLuLsPumsJ7QC1odNz3sJiCbs2wC0nLE0uLGaEtXynIgRqIddYCHx88pb5HTXv4SZeuv0Rqq4+axW9PLAAATU8w04qqjaSXgbGLP3NmohqM6bV9kZZwZLR/klDaQGo1u9uDb9lr4Yn+rBQIDAQABo4HuMIHrMB0GA1UdDgQWBBSWn3y7xm8XvVk/UtcKG+wQ1mSUazCBuwYDVR0jBIGzMIGwgBSWn3y7xm8XvVk/UtcKG+wQ1mSUa6GBlKSBkTCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb22CAQAwDAYDVR0TBAUwAwEB/zANBgkqhkiG9w0BAQUFAAOBgQCBXzpWmoBa5e9fo6ujionW1hUhPkOBakTr3YCDjbYfvJEiv/2P+IobhOGJr85+XHhN0v4gUkEDI8r2/rNk1m0GA8HKddvTjyGw/XqXa+LSTlDYkqI8OwR8GEYj4efEtcRpRYBxV8KxAW93YDWzFGvruKnnLbDAF6VR5w/cCMn5hzGCAZowggGWAgEBMIGUMIGOMQswCQYDVQQGEwJVUzELMAkGA1UECBMCQ0ExFjAUBgNVBAcTDU1vdW50YWluIFZpZXcxFDASBgNVBAoTC1BheVBhbCBJbmMuMRMwEQYDVQQLFApsaXZlX2NlcnRzMREwDwYDVQQDFAhsaXZlX2FwaTEcMBoGCSqGSIb3DQEJARYNcmVAcGF5cGFsLmNvbQIBADAJBgUrDgMCGgUAoF0wGAYJKoZIhvcNAQkDMQsGCSqGSIb3DQEHATAcBgkqhkiG9w0BCQUxDxcNMTYwMzIxMTMwODA1WjAjBgkqhkiG9w0BCQQxFgQUD4sqb6CSRovMjw9qLI8TrSfQnLUwDQYJKoZIhvcNAQEBBQAEgYAALAeXJN42x54w5ygTV8/zzkLlvngOIaU9kaOXfiS3iMkUil4AiOSyyVLWRzc9NdyHdZjCGq4YVSufHpOnreGQAfiOQHp1zwMQ+pr2kzhCDIfa+TIjvD8+5T0QHLsjniH/y3qxkXNjEOoL/sI1/Bp/f+r33W17UifHwZDVoOsT/w==-----END PKCS7-----
-                                       "/>
-                                <input type="image" src="https://www.paypalobjects.com/fr_FR/FR/i/btn/btn_donateCC_LG.gif" name="submit" alt="PayPal, le réflexe sécurité pour payer en ligne"/>
-                                <img alt="" border="0" src="https://www.paypalobjects.com/fr_FR/i/scr/pixel.gif" width="1" height="1"/>
-                            </form>
-                        </div>
+                        <i>version 08-05-2018 - v3.1.1</i>
                     </div>
                 </div>
             </div>
@@ -470,6 +465,19 @@
                 </div>
             </div>
         </div>
+        <!-- show wiring of example "modal" -->
+        <div id="wiringModal" class="modal-dialog" style="display:none;width: 100%;">
+            <div id="pictureModalLabel_boutons">
+                <button id="btn_wiring_mini" class="btn btn-default">
+                    <span id="icon_btn_blocs_picture_mini" class="glyphicon glyphicon-minus"> </span>
+                </button>
+                <button id="btn_wiring_maxi" class="btn btn-default">
+                    <span id="icon_btn_blocs_picture_maxi" class="glyphicon glyphicon-plus"> </span>
+                </button>
+            </div>
+			<div id="wiringModal_picture" class="modal-dialog" style="width: 100%;">
+			</div>
+        </div>
         <!-- convert bin <-> text "modal" -->
         <div id="convertModal" class="modal-dialog" style="display:none">
             <input id="ti1" value="TEST" />
@@ -508,7 +516,7 @@
                         </div>
                         <label> </label>
                         <label id="span_functionToggle"> </label>
-                        <input id="toggle-Functions" data-toggle="toggle" data-off="<span id='span_functionON'> </span>" data-on="<span id='span_functionOFF'> </span>" data-onstyle="primary" data-offstyle="default" data-width="120" type="checkbox"/>
+                        <input id="toggle-Functions" data-toggle="toggle" data-off='<span id="span_functionON"> </span>' data-on='<span id="span_functionOFF"> </span>' data-onstyle="primary" data-offstyle="default" data-width="120" type="checkbox"/>
                     </div>
                     <input type="checkbox" name="select_all" id="select_all"/> <span id="span_select_all"> </span>
                     <div class="modal-body" id="modal-body-config"></div>
@@ -553,19 +561,21 @@
                             <img id="arduino_card_mini_picture" />
                         </div>
                         <div class="modal-body-config-global_left">
-                            <span class="fa fa-language"></span>  <label id="span_languageMenu"> </label>  <select id="languageMenu"></select><br/>
+                            <!-- <span class="fa fa-language"></span>  <label id="span_languageMenu"> </label>  <select id="languageMenu"></select><br/> -->
                             <!-- <label id="textSize" class="mod">Text size</label> -->
                             <!-- <input name="textSizeSelect" class="form-control" style="" min="0" max="30" step="1" value="12" type="number"> -->
                             <!-- </input> -->
-                            <br />
-                            <input type="checkbox" id="fontChoice" value="opendys" onclick="BlocklyDuino.changeFont()" checked>
-                            <label>OpenDyslexic</label>
-                            </input>
+                            <!-- <br /> -->
+							<select id="fontChoice" onchange="BlocklyDuino.changeFontURL(this[this.selectedIndex].value)" onmousemove="BlocklyDuino.changeFont()">
+								<option value="O">OpenDyslexic</option>
+								<option value="T">Trebuchet MS</option>
+								<option value="V">Verdana</option>
+							</select>
                             <div id="divCard">
                                 <br />
                                 <span class="fa fa-microchip"></span>  <label id="labelArduinoCard"></label>
                                 <div id="board_select_AIO_off"></div>
-                                <select id="board_select" onmousemove="BlocklyDuino.cardPicture_change_AIO();" onchange="BlocklyDuino.cardPicture_change_AIO();">
+                                <select id="board_select" onmousemove="BlocklyDuino.cardPicture_change_AIO()" onchange="BlocklyDuino.cardPicture_change_AIO()">
                                     <option value="none">...</option>
                                     <optgroup label="Arduino">
                                         <option value="arduino_leonardo">Arduino/Genuino LEONARDO</option>
@@ -590,14 +600,22 @@
                                     </optgroup>
                                     <optgroup label="DFRobot">
                                         <option value="dfrobot_romeo">DFRobot RoMeo v2</option>
+                                        <option value="dfrobot_romeo_ble">DFRobot RoMeo BLE</option>
+                                    </optgroup>
+                                    <optgroup label="ESP">
+                                        <option value="esp8266">ESP8266</option>
+                                        <option value="esp32">ESP32</option>
+                                    </optgroup>
+                                    <optgroup label="Peguino">
+                                        <option value="kit_peguino_uno_esp32">Peguino Uno ESP32</option>
+                                        <option value="kit_peguino_uno_nano">Peguino Uno Nano</option>
                                     </optgroup>
                                     <optgroup label="Kits">
                                         <option value="kit_microfeux">Micro-feux Jeulin</option>
                                         <option value="kit_petitbot">Petit Bot</option>
                                     </optgroup>
-                                    <optgroup label="Peguino">
-                                        <option value="kit_peguino_nano">Peguino Nano</option>
-                                        <option value="kit_peguino_uno">Peguino Uno</option>
+                                    <optgroup label="MicroBit">
+                                        <option value="kit_microbit">Micro:bit</option>
                                     </optgroup>
                                 </select>
                             </div>
@@ -677,6 +695,6 @@
         <div id="arduino_IDE_code"> </div>
     </body>
 	<script>
-		require('../resources/app/Electron_blockly@rduino_buttons_AIO.js')
+		require('../resources/app.asar/Electron_Blockly@rduino_buttons_AIO.js')
 	</script>
 </html>
